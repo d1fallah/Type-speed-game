@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+:root {
+    --bgColor: #333;
+    --textPrimary: #fff;
+    --textSecondary: #666;
+    --primaryColor: #fd4;
+}
+h1{
+    color:var(--primaryColor)
+}
+h1 svg {
+    width: 40px;
+    fill : var(--primaryColor);
+}
+main{
+
+    width: 600px;   
+    margin: 50px auto;
+
+}
+body{
+    font-family: 'Roboto', sans-serif;
+    background-color : var(--bgColor);
+    color: var(--textPrimary);
+    font: size 1.4rem; ;
+}
+#header{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 20px 6px 30px;
+}
+#buttons
+{
+    text-align: right;
+
+}
+#info
+{
+    color: var(--primaryColor);
+
+}
+button{
+    background: rgba(255, 255, 255, .2);
+    border: 0;
+    color: rgba(255, 255, 255, .5);
+    padding: 5px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+div#game{
+    line-height: 35px;
+    height: 105px;
+    position: relative;
+    overflow: hidden;
+}
+#focus-error{
+    position: absolute;
+    inset: 0;
+    text-align: center;
+    padding-top: 35px;
+
+}
+#words{
+    filter: blur(5px);
+    color: var(--textSecondary);
+}
+#game:focus #words{
+    filter:blur(0);
+}
+#game:focus #focus-error{
+    display: none;
+}
+div.word{
+    display: inline-block;
+    font-family: 'Roboto mono'monospace;
+    margin:0 5px;
+}
+.letter.correct{
+    color: #fff;
+}
+.letter.incorrect{
+    color: #f55;
+}
