@@ -10,8 +10,8 @@ function removeClass(el, name) {
 }
 
 function randomWord() {
-    const randomIndex = Math.floor(Math.random() * wordsCount);
-    return words[randomIndex];
+    const randomIndex = Math.ceil(Math.random() * wordsCount);
+    return words[randomIndex-1];
 }
 
 function formatWord(word) {
@@ -29,9 +29,34 @@ function newGame() {
 
 document.getElementById('game').addEventListener('keyup', ev => {
     const key = ev.key;
-    // Add your key handling logic here
+    const currentWord = document.querySelector('.word.current');
+    const currentLetter = document.querySelector('.letter.current');
+    const expected = currentLetter.innerHTML;
+    const isLetter = key.length === 1 && key !== ' ';
+    const isSpace = key === ' ';
+    if (isLetter){
+        if(currentLetter){
+            addClass(currentLetter, key === expected ? 'correct' : 'incorrect');
+            removeClass(currentLetter, 'current');
+            addClass(currentLetter.nextElementSibling, 'current');
+        }
+    }
+    if(isSpace){
+        if(expected !== ' '){
+           const lettersToInvalidate = [...document.querySelectorAll('.word.current .letter:not(.correct)')];
+            lettersToInvalidate.forEach(letter => {
+                addClass(letter, 'incorrect');
+            });
+        }
+        removeClass(currentWord, 'current');
+        addClass(currentWord.nextElementSibling, 'current');
+        if (currentLetter){
+            removeClass(currentLetter, 'current');
+        }
+        addClass(currentWord.nextElementSibling.firstChild, 'current');
+    }
 });
-
+   
 newGame();
 
 //25:39

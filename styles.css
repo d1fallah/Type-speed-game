@@ -82,3 +82,30 @@ div.word{
 .letter.incorrect{
     color: #f55;
 }
+@keyframes blink{
+    0%{
+        opacity: 1;
+    }
+    50%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+#cursor{
+   display: none;
+    width: 1.5px;
+    height: 1rem;
+    background: var(--primaryColor);
+    position: fixed;
+    top: 198px;
+    left: 18px;
+    animation: blink .3s infinite;
+}
+#game:focus #cursor{
+    display:block;
+}
+div#game:focus{
+    outline: 0;
+}
